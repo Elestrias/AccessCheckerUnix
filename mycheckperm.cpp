@@ -12,21 +12,20 @@ struct group{
 
 };
 class AccessChecker{
-     int lstat(const char *pathname, struct stat *buf);
-     passwd *getpwnam(const char *name);
-     passwd *getpwuid(uid_t uid);
-     group *getgrnam(const char *name);
 public:
-    AccessChecker();
-     void getFiles(string path){
-         for (auto it : filesystem::recursive_directory_iterator(path))
-         {
-            cout<<it.path()<<"\n";
-         }
-     }
+    AccessChecker(){};
+    void getFiles(string path){
+        std::experimental::filesystem::file_type k;
+        for (auto it : filesystem::recursive_directory_iterator(path))
+        {
+           if(experimental::filesystem::is_regular_file(it.path())) {
+               cout << "f " << it.path() << "\n";
+           }else if(experimental::filesystem::is_directory(it.path())){
+                cout<<"d "<<it.path()<<"\n";
+            }
+        }
+    }
 };
-
-
 
 int main() {
     string input, username, direcotry, groupname;
