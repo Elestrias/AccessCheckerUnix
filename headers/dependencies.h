@@ -10,6 +10,7 @@
 #include <sys/types.h> // work with unix system files and functions
 #include <unistd.h>
 #include <grp.h> //set groups
+#include <sys/stat.h>
 namespace filesystem = std::experimental::filesystem;
 using namespace std;
 #endif //APP_DEPENDENCIES_H
