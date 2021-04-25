@@ -1,21 +1,21 @@
 #include "../headers/AccessChecker.h"
 
 void AccessChecker::getFiles(string& path, string &user, string& group){
-    std::experimental::filesystem::file_type k;
     if(path != "/sys" && path != "/proc") {
-        for (auto it : filesystem::recursive_directory_iterator(path)) {
-            if (CheckUser(user, path, group)) {
+        for (const auto &it : filesystem::recursive_directory_iterator(path)) {
+            if (CheckUser(user, static_cast<string>(it.path()), group)){
                 if (experimental::filesystem::is_regular_file(it.path())) {
                     cout << "f " << it.path() << "\n";
                 } else if (experimental::filesystem::is_directory(it.path())) {
                     cout << "d " << it.path() << "\n";
                 }
             }
+
         }
     }
 }
 
-bool AccessChecker::CheckUser(string &username, string & path, string &groupname){
+bool AccessChecker::CheckUser(string &username, string path, string &groupname){
     //cout<<"Cur ID"<<getuid()<<"\n";
     //cout<<"Cur grID"<<getgid()<<"\n";
 
