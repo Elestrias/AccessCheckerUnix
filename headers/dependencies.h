@@ -11,6 +11,7 @@
 #include <unistd.h>
 #include <grp.h> //set groups
 #include <sys/stat.h>
+#include <regex>
 namespace filesystem = std::experimental::filesystem;
 using namespace std;
 #endif //APP_DEPENDENCIES_H

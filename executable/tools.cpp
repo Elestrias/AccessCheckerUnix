@@ -13,3 +13,9 @@ vector<string> argParser(int &argc, char **argv){
     }
     return arguments;
 }
+
+bool checkPath(string& path){
+    cmatch result;
+    regex regularSys("(sys/*)|(proc/*)");
+    return !regex_match(path.c_str(), result, regularSys);
+}

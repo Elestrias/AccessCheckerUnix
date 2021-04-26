@@ -6,9 +6,13 @@
 
 class AccessChecker {
 public:
-    static void getFiles(string&, string &, string&);
+
+   static void getFiles(string&);
+   static bool setConfigs(string&, string&);
+   static bool resetConfigs(string&, string&);
 private:
-    static bool CheckUser(string &, string, string &);
+    static bool CheckUser(string);
+
 };
 
 

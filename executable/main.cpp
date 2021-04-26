@@ -9,9 +9,12 @@ int main(int argc, char *argv[]) {
     username = arguments[0];
     groupname = arguments[1];
     path = arguments[2];
-    //path = "/home/elestrias/CLionProjects/";
-    //username = "Sveta";
-    //groupname = "TestGroup";
-    AccessChecker::getFiles(path, username, groupname);
+    path = "/home/elestrias/CLionProjects/";
+    username = "Sveta";
+    groupname = "TestGroup";
+    if(checkPath(path)) {
+        AccessChecker::setConfigs(username, groupname);
+        AccessChecker::getFiles(path);
+    }
     return 0;
 }
