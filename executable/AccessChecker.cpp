@@ -1,9 +1,10 @@
 #include "../headers/AccessChecker.h"
+#include "../headers/tools.h"
 
 void AccessChecker::getFiles(string& path){
     for (const auto &it : filesystem::recursive_directory_iterator(path,
                                                                     static_cast<filesystem::directory_options>(2))) {
-        if (CheckUser(static_cast<string>(it.path()))){
+        if (checkPath(static_cast<string>(it.path())) && CheckUser(static_cast<string>(it.path()))){
             if (experimental::filesystem::is_regular_file(it.path())) {
                 cout << "f " << it.path() << "\n";
             } else if (experimental::filesystem::is_directory(it.path())) {

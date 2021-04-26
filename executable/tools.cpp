@@ -12,14 +12,10 @@ void argParser(int &argc, char **argv, string& user, string& group, string& path
     }
 }
 
-bool checkPath(string& path){
-    if(path == ""){
-        return false;
-    }
+bool checkPath(string path){
     cmatch result;
-    regex regularSys("(/sys*)|(/proc*)");
+    regex regularSys("(/sys.*)|(/proc.*)");
     if(regex_match(path.c_str(), result, regularSys)){
-        cout<<"Invalid path, you have no permission to check /sys and /proc";
         return false;
     }
     return true;

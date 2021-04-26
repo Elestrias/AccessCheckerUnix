@@ -6,9 +6,6 @@
 int main(int argc, char *argv[]) {
     string username, groupname, path;
     argParser(argc, argv, username, groupname, path);
-    //path = "/home/elestrias/CLionProjects/";
-    //username = "Sveta";
-    //groupname = "TestGroup";
     if(checkPath(path) && AccessChecker::setConfigs(username, groupname)) {
         AccessChecker::getFiles(path);
     }else{
