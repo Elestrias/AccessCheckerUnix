@@ -1,16 +1,16 @@
-#**Unix system access checker util (USACu)**
+# **Unix system access checker util (USACu)**
 ***
-##Description
+## Description
 Simple util to check user access for changing files and directories in unix filesystem  
 
-##Dependencies
+## Dependencies
 - -std=c++2a
 - -lstdc++fs
 ## Run instructions
  - Run Makefile 
  - Run in Terminal ```sudo ./main -u username -g groupname -p /path/to/be/inserted/here/```
 ***
-##Development notes
+## Development notes
 - [x] Create argument parser
 - [x] **Make system reader(SR)**
 - [x] Make SR recursive
@@ -23,7 +23,7 @@ Simple util to check user access for changing files and directories in unix file
 - [ ] Extend util to the **Linux: $ ls** service
 ***
 
-##Code Description
+## Code Description
 
 - **class AccessChecker** - is the main body of the util, it provides functions to set configuration of the process, to make checks and to output results;
     * **func getFiles** - going thought packages and files and outputting results for every met files and directories;
