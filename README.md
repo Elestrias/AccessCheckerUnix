@@ -19,6 +19,7 @@ Simple util to check user access for changing files and directories in unix file
 - [x] **Make permissions checker**
 - [x] Change architecture wih applying to be expandable    
 - [x] Change SR with applying not to be dropped by "permission denied" error
+- [x] Extend util for work with shadow packages
 - [x] **Create Makefile**
 - [x] **Wrap util as the deb package**
 - [ ] Extend util to the **Linux: $ ls** service
