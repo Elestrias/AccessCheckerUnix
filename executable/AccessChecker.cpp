@@ -20,6 +20,7 @@ void AccessChecker::getFiles(string& path){
 }
 
 bool AccessChecker::CheckUser(string path){
+    //cout<<path<<"\n";
     int ret = access(path.c_str(), W_OK) == 0;
     return ret;
 }
@@ -53,7 +54,6 @@ bool AccessChecker::setConfigs(string &username, string &groupname) {
         cout<<"ERROR: User does not belong to the provided group\n";
         return false;
     }
-    cout<<geteuid()<<"\n";
     if(setgid(group->gr_gid) == -1 || setreuid(user->pw_uid, 0) == -1){
         cout<<"ERROR: "<<strerror(errno)<<"\n";
         return false;

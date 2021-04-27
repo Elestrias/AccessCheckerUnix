@@ -1,4 +1,4 @@
 all:
-	g++ -std=c++2a executable/*.cpp headers/*.h -lstdc++fs -o main
+	g++ -std=c++2a executable/*.cpp headers/*.h -lstdc++fs -o usacu
 clean:
-	rm -rf *.o main
+	rm -rf *.o usacu
