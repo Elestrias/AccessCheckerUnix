@@ -2,16 +2,20 @@
 #include "../headers/tools.h"
 
 void AccessChecker::getFiles(string& path){
-    for (const auto &it : filesystem::recursive_directory_iterator(path,
-                                                                    static_cast<filesystem::directory_options>(2))) {
-        if (checkPath(static_cast<string>(it.path())) && CheckUser(static_cast<string>(it.path()))){
-            if (experimental::filesystem::is_regular_file(it.path())) {
-                cout << "f " << it.path() << "\n";
-            } else if (experimental::filesystem::is_directory(it.path())) {
-                cout << "d " << it.path() << "\n";
+    try {
+        for (const auto &it : filesystem::recursive_directory_iterator(path,
+                                                                       static_cast<filesystem::directory_options>(2))) {
+            if (checkPath(static_cast<string>(it.path()), false) && CheckUser(static_cast<string>(it.path()))) {
+                if (experimental::filesystem::is_regular_file(it.path())) {
+                    cout << "f " << it.path() << "\n";
+                } else if (experimental::filesystem::is_directory(it.path())) {
+                    cout << "d " << it.path() << "\n";
+                }
             }
-        }
 
+        }
+    }catch (filesystem::filesystem_error){
+        cout<<"ERROR: Incorrect path\n";
     }
 }
 
@@ -21,8 +25,6 @@ bool AccessChecker::CheckUser(string path){
 }
 
 bool AccessChecker::setConfigs(string &username, string &groupname) {
-    //cout<<"Cur ID"<<getuid()<<"\n";
-    //cout<<"Cur grID"<<getgid()<<"\n";
     auto user = getpwnam(username.c_str());
 
     if(user == NULL){
@@ -51,12 +53,10 @@ bool AccessChecker::setConfigs(string &username, string &groupname) {
         cout<<"ERROR: User does not belong to the provided group\n";
         return false;
     }
-
-    if(setgid(group->gr_gid) == -1 || setuid(user->pw_uid) == -1){
+    cout<<geteuid()<<"\n";
+    if(setgid(group->gr_gid) == -1 || setreuid(user->pw_uid, 0) == -1){
         cout<<"ERROR: "<<strerror(errno)<<"\n";
         return false;
     }
-    //cout<<"New ID"<<getuid()<<"\n";
-    //cout<<"New grID"<<getgid()<<"\n";
     return true;
 }
