@@ -7,8 +7,9 @@ Simple util to check user access for changing files and directories in unix file
 - -std=c++2a
 - -lstdc++fs
 ## Run instructions
- - Run Makefile 
- - Run in Terminal ```sudo ./main -u username -g groupname -p /path/to/be/inserted/here/```
+ - Download the deb package
+ - Install  
+ - Run in Terminal ```sudo usacu -u username -g groupname -p /path/to/be/inserted/here/```
 ***
 ## Development notes
 - [x] Create argument parser
